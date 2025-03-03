@@ -1,9 +1,9 @@
 # QR-Update-V1
 
 ## For Demo:
-https://alienmusk.pythonanywhere.com/seller
-https://alienmusk.pythonanywhere.com/get_qr_detail_view
-https://alienmusk.pythonanywhere.com/authenticate
+- https://alienmusk.pythonanywhere.com/seller
+- https://alienmusk.pythonanywhere.com/get_qr_detail_view
+- https://alienmusk.pythonanywhere.com/authenticate
 
 ## Here is the sample serial number:
 ### (Use only these)
