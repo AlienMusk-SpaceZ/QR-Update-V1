@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Sell a Product</h4>
+                <p class="card-title-desc">Fill in customer details correctly. Notice: Once the product is sold, you cannot enter that serial number here again!</p>
+
+                <div class="table-responsive">
+                    <form method="POST">
+                        <label for="name">Enter Customer Name</label>
+                        <input type="text" id="name" class="form-control" required name="name" autocomplete="off"><br>
+
+                        <label for="phone">Enter Customer Phone</label>
+                        <input type="text" id="phone" class="form-control" required name="phone" autocomplete="off"><br>
+
+                        <label for="serial">Enter Serial Number</label>
+                        <input type="text" id="serial" class="form-control" required name="serial" autocomplete="off"><br>
+
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Sell Product</button>
+                    </form>
+
+                    {% if message %}
+                    <p class="message"
+                    style="color: {% if error %}red{% else %}green{% endif %};
+                            font-weight: bold;
+                            font-size: 16px;
+                            margin-top: 10px;">
+                        {{ message }}
+                    </p>
+                    {% endif %}
+
+                </div> <!-- End table-responsive -->
+
+            </div> <!-- End card-body -->
+        </div> <!-- End card -->
+    </div> <!-- End col-12 -->
+</div> <!-- End row -->
+
+{% endblock %}
