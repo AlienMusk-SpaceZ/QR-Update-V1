@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose SpaceZ Products" name="description" />
+    <meta content="Alien Musk" name="author" />
+
+    <title> | Seller Dashboard | </title>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Material Design Icons CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/static/App">
+    <!-- Bootstrap Css -->
+    <link href="/static/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="/static/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="/static/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Boxicons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+
+<body data-sidebar="dark" data-layout-mode="light">
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+                        <a href="#" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="/static/App_Logo.png" alt="" height="22">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="/static/App_Logo.png" alt="" height="17">
+                            </span>
+                        </a>
+
+                        <a href="#" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="/static/App_Logo.png" alt="" height="30">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="/static/App_Logo.png" alt="" height="60">
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect"
+                        id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+                </div>
+
+                <div class="d-flex">
+                    <div class="dropdown d-none d-lg-inline-block ms-1">
+                        <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                            <i class="bx bx-fullscreen"></i>
+                        </button>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" src="/static/App_Logo.png"
+                                alt="Header Avatar">
+                            <span class="d-none d-xl-inline-block ms-1">Alien@Musk</span>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item text-danger" href="/logout">
+                                <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>Log Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu">
+            <div data-simplebar class="h-100">
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li class="menu-title" key="t-menu">Menu</li>
+                        <li>
+                            <a href="/seller" class="waves-effect">
+                                <i class="mdi mdi-storefront"></i>
+                                <span key="t-chat">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/seller/add_customer" class="waves-effect">
+                                <i class="mdi mdi-account-plus"></i>
+                                <span key="t-chat">Add Customer</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                    {% block content %}
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                <p class="text-muted fw-medium">No. Customers</p>
+                                <h4 class="mb-0" id="batch_count">{{ customer_count }}</h4>
+                            </div>
+
+                            <div class="flex-shrink-0 align-self-center">
+                                <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                    <span class="avatar-title">
+                                        <i class="bx bx-group font-size-24"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <!-- Flex container for title & button -->
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h4 class="card-title">List of Customers</h4>
+                                            <p class="card-title-desc">These are the customers that you sold products to.</p>
+                                        </div>
+                                        <a href="{{ url_for('download_excel') }}" class="btn btn-success">Download Excel</a>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table id="dashboardTable" class="table table-bordered dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th>Customer Name</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Serial Number</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-body">
+                                                {% for customer in customers %}
+                                                <tr>
+                                                    <td>{{ customer.Customer_Name }}</td>
+                                                    <td>{{ customer.Phone_Number }}</td>
+                                                    <td>{{ customer.serial_number }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+
+                                        {% if not customers %}
+                                        <p>No customers found.</p>
+                                        {% endif %}
+                                    </div> <!-- End table-responsive -->
+                                </div> <!-- End card-body -->
+                            </div> <!-- End card -->
+                        </div> <!-- End col-12 -->
+                    </div> <!-- End row -->
+                    {% endblock %}
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © SpaceZ.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Developed by <a href="https://alienmusk.pythonanywhere.com" target="_blank">Alien Musk</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/metisMenu.min.js"></script>
+    <script src="/static/js/app.js"></script>
+
+</body>
+
+</html>
